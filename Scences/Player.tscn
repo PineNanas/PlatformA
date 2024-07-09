@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://6yykbpjeri5f"]
+
+[ext_resource type="Texture2D" uid="uid://d3sj1o6e65ah7" path="res://Assets/Kenney/PlayerPoses/player_tilesheet.png" id="1_aciis"]
+
+[sub_resource type="Animation" id="Animation_34pmp"]
+resource_name = "Idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ytgn"]
+_data = {
+"Idle": SubResource("Animation_34pmp")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ycwyt"]
+states/Start/position = Vector2(262, 100)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_odkvd"]
+graph_offset = Vector2(-827.057, -11.3675)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_ycwyt")
+nodes/StateMachine/position = Vector2(-160, 140)
+nodes/output/position = Vector2(180, 160)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Graphic" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphic"]
+texture = ExtResource("1_aciis")
+region_enabled = true
+region_rect = Rect2(0, 0, 80, 110)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2ytgn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_odkvd")
+anim_player = NodePath("../AnimationPlayer")

@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhndpm28rqtpl"]
+[gd_scene load_steps=3 format=3 uid="uid://dhndpm28rqtpl"]
 
 [ext_resource type="Script" path="res://Scences/Main.cs" id="1_grrc3"]
+[ext_resource type="TileSet" uid="uid://cgpj7ejq68hjm" path="res://Assets/Kenney/Tilemap/Forest.tres" id="2_s5sya"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_grrc3")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_s5sya")
+format = 2
+layer_0/name = "Platform"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
