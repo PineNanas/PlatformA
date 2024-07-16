@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://6yykbpjeri5f"]
+[gd_scene load_steps=8 format=3 uid="uid://6yykbpjeri5f"]
 
 [ext_resource type="Texture2D" uid="uid://d3sj1o6e65ah7" path="res://Assets/Kenney/PlayerPoses/player_tilesheet.png" id="1_aciis"]
+[ext_resource type="Script" path="res://Scences/Player.cs" id="1_nl4ot"]
 
 [sub_resource type="Animation" id="Animation_34pmp"]
 resource_name = "Idle"
@@ -20,7 +21,12 @@ nodes/StateMachine/position = Vector2(-160, 140)
 nodes/output/position = Vector2(180, 160)
 node_connections = [&"output", 0, &"StateMachine"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85jnu"]
+size = Vector2(63, 96)
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_nl4ot")
 
 [node name="Graphic" type="Node2D" parent="."]
 
@@ -37,3 +43,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_odkvd")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 7)
+shape = SubResource("RectangleShape2D_85jnu")
